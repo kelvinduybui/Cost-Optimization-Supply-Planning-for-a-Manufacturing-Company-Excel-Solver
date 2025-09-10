@@ -106,44 +106,16 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 
 ### 🔹 Key Formulas
 
-- **Net Demand**  
-  \[
-  \text{NetDemand}(i) = \text{GrossDemand}(i) - \text{Inventory}(i-1)
-  \]
+# Key Formulas
 
-- **Production**  
-  \[
-  \text{Production}(i) = \frac{\text{WorkersEmployed}(i) \times \text{WorkingDay} \times \text{WorkingHour}}{\text{NetProductionTime}}
-  \]
+| Formula | Description |
+|---------|-------------|
+| `Net Demand(i) = Gross Demand(i) – Inventory(i–1)` | Net demand in period *i* |
+| `Production(i) = WorkersEmployed(i) × WorkingDay × WorkingHour ÷ NetProductionTime` | Production quantity in period *i* |
+| `WorkersEmployed(i) = Workers(i–1) + Hired(i) – LaidOff(i)` | Number of workers employed in period *i* |
+| `On-hand Inventory(i) = Inventory(i–1) + Production(i) + Overtime(i) + Subcontract(i) + Stockout(i) – Stockout(i–1) – Gross Demand(i)` | Inventory balance at end of period *i* |
+| `Total Monthly Cost(i) = Production(i) × MaterialCost + WorkersEmployed(i) × RegularTimeSalary + Hired(i) × HiringCost + LaidOff(i) × LayoffCost + Inventory(i) × HoldingCost + Overtime(i) × OvertimeCost + Subcontract(i) × SubcontractCost + Stockout(i) × StockoutCost` | Total cost in period *i* |
 
-- **Workers Employed**  
-  \[
-  \text{WorkersEmployed}(i) = \text{Workers}(i-1) + \text{Hired}(i) - \text{LaidOff}(i)
-  \]
-
-- **On-hand Inventory**  
-  \[
-  \begin{aligned}
-  \text{Inventory}(i) &= \text{Inventory}(i-1) + \text{Production}(i) + \text{Overtime}(i) \\
-  &\quad + \text{Subcontract}(i) + \text{Stockout}(i) - \text{Stockout}(i-1) - \text{GrossDemand}(i)
-  \end{aligned}
-  \]
-
-- **Total Monthly Cost**  
-  \[
-  \begin{aligned}
-  \text{Cost}(i) &= \text{Production}(i) \times \text{MaterialCost} \\
-  &+ \text{WorkersEmployed}(i) \times \text{RegularTimeSalary} \\
-  &+ \text{Hired}(i) \times \text{HiringCost} \\
-  &+ \text{LaidOff}(i) \times \text{LayoffCost} \\
-  &+ \text{Inventory}(i) \times \text{HoldingCost} \\
-  &+ \text{Overtime}(i) \times \text{OvertimeCost} \\
-  &+ \text{Subcontract}(i) \times \text{SubcontractCost} \\
-  &+ \text{Stockout}(i) \times \text{StockoutCost}
-  \end{aligned}
-  \]
-
----
 
 ### 🔹 Solver Objective
 - **Minimize**:  
@@ -157,4 +129,28 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
   - Respect **capacity limits** (regular, overtime, subcontract)  
   - Follow rules of chosen strategy (**Chase vs. Level**)  
 
+### Key formulas
+
+$$
+\begin{aligned}
+\text{Net Demand}(i) &= \text{Gross Demand}(i) - \text{Inventory}(i-1) \\[6pt]
+
+\text{Production}(i) &= \frac{\text{WorkersEmployed}(i) \times \text{WorkingDay} \times \text{WorkingHour}}
+{\text{NetProductionTime}} \\[6pt]
+
+\text{WorkersEmployed}(i) &= \text{Workers}(i-1) + \text{Hired}(i) - \text{LaidOff}(i) \\[6pt]
+
+\text{On-hand Inventory}(i) &= \text{Inventory}(i-1) + \text{Production}(i) + \text{Overtime}(i) \\
+&\quad + \text{Subcontract}(i) + \text{Stockout}(i) - \text{Stockout}(i-1) - \text{Gross Demand}(i) \\[6pt]
+
+\text{Total Monthly Cost}(i) &= \text{Production}(i) \times \text{MaterialCost} \\
+&\quad + \text{WorkersEmployed}(i) \times \text{RegularTimeSalary} \\
+&\quad + \text{Hired}(i) \times \text{HiringCost} \\
+&\quad + \text{LaidOff}(i) \times \text{LayoffCost} \\
+&\quad + \text{Inventory}(i) \times \text{HoldingCost} \\
+&\quad + \text{Overtime}(i) \times \text{OvertimeCost} \\
+&\quad + \text{Subcontract}(i) \times \text{SubcontractCost} \\
+&\quad + \text{Stockout}(i) \times \text{StockoutCost}
+\end{aligned}
+$$
 

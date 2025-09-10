@@ -91,16 +91,16 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 - Each **row** = 1 month (**Jan–Jun**)  
 - Each **column** = Demand, Workforce, Production, Inventory, Costs  
 
-#### 🔹 Inputs
-- **Gross Demand (fixed)**  
-- **Parameters** from the parameter sheet  
+#### 🔹 Inputs: 
+- Gross Demand   
+- Parameters
 
 #### 🔹 Decision Variables
-- **Production(i)**  
-- **Workers Employed(i)**  
-- **Workers Hired(i)**  
-- **Workers Laid off(i)**  
-- **On-hand Inventory(i)**  
+- Production(i)  
+- Workers Employed(i)  
+- Workers Hired(i)  
+- Workers Laid off(i)  
+- On-hand Inventory(i)  
 
 #### 🔹 Key Formulas
 
@@ -116,5 +116,89 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 - **Minimize**: TotalCost = Cost(Jan) + Cost(Feb) + Cost(Mar) + Cost(Apr) + Cost(May) + Cost(Jun)
 - Ensure all constraints defined by the chosen plan are satisfied.  
 
+## 4️⃣ Solution Approach  
 
+### Enable Excel Solver  
+
+### Chase Plan  
+
+#### Supply Planning with Excel & Solver
+
+The supply planning problem for chase plan is addressed using **Excel formulas** and **Solver optimization**.  
+The approach consists of the following steps:
+
+#### 📝 Step 1. Model Setup in Excel
+- Build a month-by-month planning table (Jan–Jun).
+- Input fixed data: gross demand, cost parameters, initial workforce, and inventory.
+- Define **decision variable cells**: Production, Workers Employed, Hired, Laid off, Inventory (highlighted in the table).
+- Link all other cells (Net Demand, Workforce Balance, Inventory Balance, Total Costs) using formulas.
+
+![Images](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20initial.png?raw=true)
+
+#### ⚙️ Step 2. Define Constraints  
+Constraints differ by planning strategy:  
+
+**Chase Plan**
+- No inventory from Jan–May; ending inventory of Jun = 500 units.
+- No stockout allowed.
+- No overtime and subcontracting.
+- Production closely follows monthly demand (workforce adjusts via hiring/layoff).
+
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20Solver.png?raw=true)  
+
+#### 📈 Step 3. Solver Result
+- **Objective**: Minimize total cost across the 6-month horizon.  
+- **Decision Variables**: Production, Workforce Hired, Workforce Laid off, Workforce Employed, Inventory.  
+- **Constraints**: As defined above for Chase plan.  
+- **Solver Method**: *Simplex LP* (suitable for linear relationships in the model).
+
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20result.png?raw=true)
+
+#### 🔍 Step 4. Scenario Takeaways  
+
+- **Production aligns with demand**: Monthly output matches **net demand**, keeping inventory minimal (opening **1,000** and closing **500**).  
+- **Workforce fluctuates sharply**: Frequent **hiring** and **layoffs** (layoff **65** in Jan, hire **80** from Feb–Apr, layoff **40** in May, hire **13** in Jun) cause significant **labor cost volatility**.  
+- **Cost driven by labor**: **Total cost = 484,250 USD**, mainly from **hiring/layoff expenses** and **regular-time salaries**, with **no overtime, subcontracting, or stockouts**.  
+- The chase strategy helps **eliminate inventory holding costs** (almost zero inventory). However, it leads to very **high labor costs** due to the continuous hiring and dismissing of employees.
+
+### Level Plan  
+
+#### Supply Planning with Excel & Solver
+
+The supply planning problem for Level Plan is addressed using **Excel formulas** and **Solver optimization**.  
+The approach consists of the following steps:
+
+#### 📝 Step 1. Model Setup in Excel
+- Build a month-by-month planning table (Jan–Jun).
+- Input fixed data: gross demand, cost parameters, initial workforce, and inventory.
+- Define **decision variable cells**: Production, Workers Employed, Hired, Laid off, Inventory (highlighted in the table).
+- Link all other cells (Net Demand, Workforce Balance, Inventory Balance, Total Costs) using formulas.
+
+![Images](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Level%20initial.png?raw=true)
+
+#### ⚙️ Step 2. Define Constraints  
+Constraints differ by planning strategy:  
+
+**Level Plan**
+- Allow carrying inventory from Jan–May
+- No stockout allowed.
+- No overtime and subcontracting.
+- Produce the same quantity in every period.
+
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20Solver.png?raw=true)  
+
+#### 📈 Step 3. Solver Result
+- **Objective**: Minimize total cost across the 6-month horizon.  
+- **Decision Variables**: Production, Workforce Hired, Workforce Laid off, Workforce Employed, Inventory.  
+- **Constraints**: As defined above for Level plan.  
+- **Solver Method**: *Simplex LP* (suitable for linear relationships in the model).
+
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Level%20result.png?raw=true)
+
+#### 🔍 Step 4. Scenario Takeaways
+
+- **Stable production & workforce**: Fixed output of **1,425 units/month** with **36 workers** (after laying off 44 in Jan), keeping workforce stable afterward.
+- **Inventory builds up**: Stock rises from **1,000 → 7,175 units** as production is steady while demand fluctuates, covering peak-demand months.
+- **Cost structure**: Total cost = **284,088 USD**, mainly from regular-time salaries, initial layoff cost, and rising inventory holding cost (no overtime, subcontracting, or stockouts).
+- The level plan helps **keep workforce and production stable**, avoiding production fluctuations. However, it incurs **high inventory costs** (due to overproduction in low-demand months) and a large layoff cost at the beginning.
 

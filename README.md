@@ -154,3 +154,4 @@ $$
 \end{aligned}
 $$
 
+$\min \sum_{i=1}^{20} \sum_{j=1}^{7} \sum_{k=1}^{3} x_{ijk}$

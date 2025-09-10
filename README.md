@@ -81,5 +81,80 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ### 🔎 Outputs Required  
 - **Month-by-month table**: Gross Demand, Net Demand, Production, Workers Employed, Workers Hired, Workers Laid off, On-hand Inventory, Overtime, Subcontract, Stockout, Total Cost  
 - **Scenario comparison**: Total cost breakdown (material, holding, hiring/layoff, salary, OT/subcontract if used, stockout)  
-- **Charts**: Demand vs Production, Workforce trend, Inventory level, Cost breakdown  
+- **Charts**: Demand vs Production, Workforce trend, Inventory level, Cost breakdown
+
+---
+
+## 3️⃣ Model Formulation  
+### Planning Model  
+
+- Each **row** = 1 month (**Jan–Jun**)  
+- Each **column** = Demand, Workforce, Production, Inventory, Costs  
+
+#### 🔹 Inputs
+- **Gross Demand (fixed)**  
+- **Parameters** from the parameter sheet  
+
+#### 🔹 Decision Variables
+- **Production(i)**  
+- **Workers Employed(i)**  
+- **Workers Hired(i)**  
+- **Workers Laid off(i)**  
+- **On-hand Inventory(i)**  
+
+---
+
+### 🔹 Key Formulas
+
+- **Net Demand**  
+  \[
+  \text{NetDemand}(i) = \text{GrossDemand}(i) - \text{Inventory}(i-1)
+  \]
+
+- **Production**  
+  \[
+  \text{Production}(i) = \frac{\text{WorkersEmployed}(i) \times \text{WorkingDay} \times \text{WorkingHour}}{\text{NetProductionTime}}
+  \]
+
+- **Workers Employed**  
+  \[
+  \text{WorkersEmployed}(i) = \text{Workers}(i-1) + \text{Hired}(i) - \text{LaidOff}(i)
+  \]
+
+- **On-hand Inventory**  
+  \[
+  \begin{aligned}
+  \text{Inventory}(i) &= \text{Inventory}(i-1) + \text{Production}(i) + \text{Overtime}(i) \\
+  &\quad + \text{Subcontract}(i) + \text{Stockout}(i) - \text{Stockout}(i-1) - \text{GrossDemand}(i)
+  \end{aligned}
+  \]
+
+- **Total Monthly Cost**  
+  \[
+  \begin{aligned}
+  \text{Cost}(i) &= \text{Production}(i) \times \text{MaterialCost} \\
+  &+ \text{WorkersEmployed}(i) \times \text{RegularTimeSalary} \\
+  &+ \text{Hired}(i) \times \text{HiringCost} \\
+  &+ \text{LaidOff}(i) \times \text{LayoffCost} \\
+  &+ \text{Inventory}(i) \times \text{HoldingCost} \\
+  &+ \text{Overtime}(i) \times \text{OvertimeCost} \\
+  &+ \text{Subcontract}(i) \times \text{SubcontractCost} \\
+  &+ \text{Stockout}(i) \times \text{StockoutCost}
+  \end{aligned}
+  \]
+
+---
+
+### 🔹 Solver Objective
+- **Minimize**:  
+  \[
+  \text{TotalCost} = \sum_{i=Jan}^{Jun} \text{Cost}(i)
+  \]
+
+- **Constraints**:  
+  - No **stockouts** (unless allowed)  
+  - Respect **inventory policies**  
+  - Respect **capacity limits** (regular, overtime, subcontract)  
+  - Follow rules of chosen strategy (**Chase vs. Level**)  
+
 

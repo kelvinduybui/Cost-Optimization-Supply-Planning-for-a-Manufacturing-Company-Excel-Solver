@@ -6,11 +6,11 @@
 
 ## 🗂️ Table of Contents
 1️⃣ [Context](#context)  
-2️⃣ [Problem Description & Parameters]
-3️⃣ [Model Formulation]
-4️⃣ [Solution Approach]
+2️⃣ [Problem Description & Parameters]  
+3️⃣ [Model Formulation]  
+4️⃣ [Solution Approach]  
 5️⃣ [Visualization](#visualization)  
-6️⃣ [Insights & Recommendations](#insights--recommendations)
+6️⃣ [Insights & Recommendations](#insights--recommendations)  
 
 ---
 
@@ -29,5 +29,57 @@
 - Decision-makers & Stakeholders  
 
 🎯 **Objective**  
+To design a **supply planning model** that ensures **demand fulfillment, prevents stockouts, minimizes costs** (inventory, production, overtime, subcontracting), and improves **resource utilization** — ultimately supporting operational efficiency and customer satisfaction.  
 
 🛠️ **Tools Used**  
+- **Excel:** Used to input data and calculate costs (**inventory, workforce, hiring/layoff, overtime, subcontracting, etc.**) through direct formulas  
+
+- **Excel Solver:** Used to test different planning strategies (**Chase vs. Level**) and determine the **optimal production–workforce plan** under constraints (**no stockouts, ending inventory requirement, limited overtime, etc.**)
+
+---
+
+## 2️⃣ Problem Constraints & Parameters  
+### Planning Horizon  
+- 6 months: **Jan – Jun**  
+
+### ⚙️ Parameters
+
+| **Object**              | **Qty** | **Unit**           |
+| ----------------------- | ------: | ------------------ |
+| **Inventory Holding Cost**  |       2 | USD/unit/month     |
+| **Stockout Cost**           |       5 | USD/unit/month     |
+| **Hiring Cost**             |     300 | USD/worker         |
+| **Regular-Time Salary**     |     640 | USD/worker/month   |
+| **Layoff Cost**             |     500 | USD/worker         |
+| **Subcontracting Cost**     |      30 | USD/unit           |
+| **Overtime Cost**           |       6 | USD/hour           |
+| **Available Regular Time**  |     160 | hours/month/worker |
+| **Maximum Overtime**        |      10 | hours/month/worker |
+| **Starting Inventory**      |   1,000 | units              |
+| **Ending Inventory Target** |     500 | units              |
+| **Starting Workforce**      |      80 | workers            |
+| **Material Cost**           |      10 | USD/unit           |
+| **Net Production Time**     |       4 | hours/unit         |
+| **Working Day**             |      20 | days/month         |
+| **Working Hour**            |       8 | hours/day/worker   |
+
+### 📋 Specific Business Rules  
+
+- **Chase Plan**  
+  - Do not create any inventory from **Jan to May**, ending inventory of **June = 500**  
+  - Do not have any **stockout**  
+  - Do not use any **overtime** and **subcontracting**  
+  - Try to produce what is demanded (**production closely follows monthly demand; workforce can be adjusted via hiring/layoff**)  
+
+- **Level Plan**  
+  - Do not use any **overtime** and **subcontracting**  
+  - Produce the **same quantity** every period (**fixed production level each month**)  
+  - **Carrying inventory** is allowed  
+  - Do not create any **stockout**  
+  - Aim to **minimize required capacity** (minimize number of workers needed given fixed production rate)  
+
+### 🔎 Outputs Required  
+- **Month-by-month table**: Gross Demand, Net Demand, Production, Workers Employed, Workers Hired, Workers Laid off, On-hand Inventory, Overtime, Subcontract, Stockout, Total Cost  
+- **Scenario comparison**: Total cost breakdown (material, holding, hiring/layoff, salary, OT/subcontract if used, stockout)  
+- **Charts**: Demand vs Production, Workforce trend, Inventory level, Cost breakdown  
+

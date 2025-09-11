@@ -120,7 +120,7 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 
 ### Enable Excel Solver  
 
-### Chase Plan  
+### ⚡ Chase Plan  
 
 #### Supply Planning with Excel & Solver
 
@@ -155,13 +155,9 @@ Constraints differ by planning strategy:
 ![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20result.png?raw=true)
 
 #### 🔍 Step 4. Scenario Takeaways  
-
-- **Production aligns with demand**: Monthly output matches **net demand**, keeping inventory minimal (opening **1,000** and closing **500**).  
-- **Workforce fluctuates sharply**: Frequent **hiring** and **layoffs** (layoff **65** in Jan, hire **80** from Feb–Apr, layoff **40** in May, hire **13** in Jun) cause significant **labor cost volatility**.  
-- **Cost driven by labor**: **Total cost = 484,250 USD**, mainly from **hiring/layoff expenses** and **regular-time salaries**, with **no overtime, subcontracting, or stockouts**.  
 - The chase strategy helps **eliminate inventory holding costs** (almost zero inventory). However, it leads to very **high labor costs** due to the continuous hiring and dismissing of employees.
 
-### Level Plan  
+### 📊 Level Plan:  
 
 #### Supply Planning with Excel & Solver
 
@@ -196,9 +192,40 @@ Constraints differ by planning strategy:
 ![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Level%20result.png?raw=true)
 
 #### 🔍 Step 4. Scenario Takeaways
-
-- **Stable production & workforce**: Fixed output of **1,425 units/month** with **36 workers** (after laying off 44 in Jan), keeping workforce stable afterward.
-- **Inventory builds up**: Stock rises from **1,000 → 7,175 units** as production is steady while demand fluctuates, covering peak-demand months.
-- **Cost structure**: Total cost = **284,088 USD**, mainly from regular-time salaries, initial layoff cost, and rising inventory holding cost (no overtime, subcontracting, or stockouts).
 - The level plan helps **keep workforce and production stable**, avoiding production fluctuations. However, it incurs **high inventory costs** (due to overproduction in low-demand months) and a large layoff cost at the beginning.
 
+## 5️⃣ Visualization
+### Net Demand vs Production
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Net%20Demand%20vs%20Production.png?raw=true)
+
+#### Key Takeaways:
+- ⚡ **Chase Plan:** **Production** closely **follows demand** across months, ranging from 600 units in January to 2,700 units in June, ensuring output always matches actual requirements.
+- 📊 **Level Plan:** Production is **fixed** at 1,425 units each month, while **net demand fluctuates widely**, creating a clear difference between constant supply and variable demand.
+
+### Onhand Inventory
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Onhand%20Inventory.png?raw=true)
+
+#### Key Takeaways:
+- ⚡ **Chase Plan:** Keeps **inventory minimal**, starting with 1,000 units and ending with only 500 units.
+- 📊 **Level Plan:** Inventory builds up steadily from 1,000 → 7,175 units as **constant production** exceeds demand in low-demand months.
+
+### Workforce
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Workforce.png?raw=true)
+
+#### Key Takeaways:
+- ⚡ **Chase Plan:** **Workforce fluctuates** sharply with continuous hiring and layoffs (layoff 65 in Jan, hire 80 from Feb–Apr, layoff 40 in May, hire 13 in Jun), leading to high labor cost.
+- 📊 **Level Plan:** **Stable workforce** maintained at 36 workers (after laying off 44 in Jan), ensuring no further changes throughout the period.
+
+### Cost
+![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Cost%20distribution.png?raw=true)
+
+#### Key Takeaways:
+- ⚡ **Chase Plan**:
+  - Cost is dominated by worker employed (51%) and production (32%), with significant shares from layoff (11%) and hiring (6%), reflecting **heavy workforce fluctuation**.
+  - **Cost driven by labor**: **Total cost = 484,250 USD**, mainly from **hiring/layoff expenses** and **regular-time salaries**, with **no overtime, subcontracting, or stockouts**.
+
+- 📊 **Level Plan**:
+  - Cost is concentrated in worker employed (48%) and production (30%), with additional burden from inventory holding (14%) and layoff (8%), reflecting **stable workforce but high inventory**.
+  - **Cost structure:** Total cost = **284,088 USD**, mainly from **regular-time salaries, initial layoff cost, and rising inventory holding cost** (no overtime, subcontracting, or stockouts).
+
+## 6️⃣ Insights & Recommendations

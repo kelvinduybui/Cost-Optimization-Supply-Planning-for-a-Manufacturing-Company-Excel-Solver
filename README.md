@@ -6,9 +6,9 @@
 
 ## 🗂️ Table of Contents
 1️⃣ [Context](#context)  
-2️⃣ [Problem Description & Parameters]  
-3️⃣ [Model Formulation]  
-4️⃣ [Solution Approach]  
+2️⃣ [Problem Description & Parameters](#problem-description--parameters)  
+3️⃣ [Model Formulation](#model-formulation)  
+4️⃣ [Solution Approach](#solution-approach)  
 5️⃣ [Visualization](#visualization)  
 6️⃣ [Insights & Recommendations](#insights--recommendations)  
 
@@ -39,6 +39,10 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ---
 
 ## 2️⃣ Problem Constraints & Parameters  
+### Definition
+- **Chase Plan**: A production strategy where output is adjusted each period to match demand, keeping inventory minimal but causing frequent workforce changes.
+- **Level Plan**: A production strategy where output is kept constant over time, stabilizing the workforce but leading to inventory build-up when demand fluctuates.
+
 ### Planning Horizon  
 - 6 months: **Jan – Jun**  
 
@@ -119,6 +123,7 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ## 4️⃣ Solution Approach  
 
 ### Enable Excel Solver  
+Go to **File > Options > Add-ins > Excel Add-ins > Go**, check **Solver Add-in**, click **OK**, then find **Solver** under the **Data** tab.
 
 ### ⚡ Chase Plan  
 
@@ -229,3 +234,24 @@ Constraints differ by planning strategy:
   - **Cost structure:** Total cost = **284,088 USD**, mainly from **regular-time salaries, initial layoff cost, and rising inventory holding cost** (no overtime, subcontracting, or stockouts).
 
 ## 6️⃣ Insights & Recommendations
+### Insights
+
+#### Cost Structure Trade-off
+⚡ **Chase Plan**: Total cost = **484,250 USD**.  
+- ✅ **Advantage**: Almost **no inventory** → inventory cost nearly zero.  
+- ❌ **Drawback**: **Workforce fluctuates** heavily → high hiring/layoff costs and labor management challenges.  
+
+📊 **Level Plan**: Total cost = **284,088 USD**.  
+- ✅ **Advantage**: **Stable workforce** with minimal fluctuation → easier labor management.  
+- ❌ **Drawback**: **Inventory builds up** significantly → high inventory holding cost.  
+
+#### ⚙️ Operational Feasibility
+
+⚡ **Chase**: High **HR management risks** (continuous layoffs & hiring → lower employee morale, higher training costs).  
+
+📊 **Level**: High **financial and storage risks** (large inventory, potential obsolescence, especially for short product life cycles).  
+
+### Recommendations
+- If the company prioritizes **labor stability** → lean toward **Level plan**.
+- If the company prioritizes **inventory minimization & working capital** efficiency → lean toward **Chase plan**.
+- However, **Pure Chase or Level plan** is not optimal → A **hybrid approach** is preferable: e.g., maintain a leveled production rate around the average demand + allow some overtime/subcontracting to cover peak demand reduces inventory without excessive workforce fluctuation.

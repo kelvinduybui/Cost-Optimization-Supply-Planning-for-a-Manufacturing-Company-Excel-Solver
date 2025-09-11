@@ -159,9 +159,6 @@ Constraints differ by planning strategy:
 
 ![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Chase%20result.png?raw=true)
 
-#### 🔍 Step 4. Scenario Takeaways  
-- The chase strategy helps **eliminate inventory holding costs** (almost zero inventory). However, it leads to very **high labor costs** due to the continuous hiring and dismissing of employees.
-
 ### 📊 Level Plan:  
 
 #### Supply Planning with Excel & Solver
@@ -195,9 +192,6 @@ Constraints differ by planning strategy:
 - **Solver Method**: *Simplex LP* (suitable for linear relationships in the model).
 
 ![Image](https://github.com/kelvinduybui/Supply-Planning/blob/main/Images/Level%20result.png?raw=true)
-
-#### 🔍 Step 4. Scenario Takeaways
-- The level plan helps **keep workforce and production stable**, avoiding production fluctuations. However, it incurs **high inventory costs** (due to overproduction in low-demand months) and a large layoff cost at the beginning.
 
 ## 5️⃣ Visualization
 ### Net Demand vs Production

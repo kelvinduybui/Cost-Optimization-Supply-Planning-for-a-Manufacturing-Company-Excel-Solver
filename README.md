@@ -45,11 +45,11 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ---
 
 ## 2️⃣ Problem Constraints & Parameters  
-### Definition
+### 📖 Definition
 - **Chase Plan**: A production strategy where output is adjusted each period to match demand, keeping inventory minimal but causing frequent workforce changes.
 - **Level Plan**: A production strategy where output is kept constant over time, stabilizing the workforce but leading to inventory build-up when demand fluctuates.
 
-### Planning Horizon  
+### ⏳ Planning Horizon  
 - 6 months: **Jan – Jun**  
 
 ### ⚙️ Parameters
@@ -75,13 +75,13 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 
 ### 📋 Specific Business Rules  
 
-- **Chase Plan**  
+- ⚡ **Chase Plan**  
   - Do not create any inventory from **Jan to May**, ending inventory of **June = 500**  
   - Do not have any **stockout**  
   - Do not use any **overtime** and **subcontracting**  
   - Try to produce what is demanded (**production closely follows monthly demand; workforce can be adjusted via hiring/layoff**)  
 
-- **Level Plan**  
+- 📊 **Level Plan**  
   - Do not use any **overtime** and **subcontracting**  
   - Produce the **same quantity** every period (**fixed production level each month**)  
   - **Carrying inventory** is allowed  
@@ -101,7 +101,7 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 - **Concept**: Based on three elements – **objective function** (goal), **decision variables** (controllable inputs), and **constraints** (limitations). Solver adjusts the variables to optimize the goal.
 - **Meaning**: Enables **decision-making** in real-world scenarios (production planning, workforce allocation, inventory management) **without the need for coding**.
 
-### Planning Model  
+### 🏗️ Planning Model  
 
 - Each **row** = 1 month (**Jan–Jun**)  
 - Each **column** = Demand, Workforce, Production, Inventory, Costs  
@@ -135,7 +135,7 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ## 4️⃣ Solution Approach  
 ### ⚡ Chase Plan  
 
-#### Supply Planning with Excel & Solver
+#### 🧮 Supply Planning with Excel & Solver
 
 The supply planning problem for Chase Plan is addressed using **Excel formulas** and **Solver optimization**.  
 The approach consists of the following steps:
@@ -150,8 +150,6 @@ The approach consists of the following steps:
 
 #### ⚙️ Step 2. Define Constraints  
 Constraints differ by planning strategy:  
-
-**Chase Plan**
 - No inventory from Jan–May; ending inventory of Jun = 500 units.
 - No stockout allowed.
 - No overtime and subcontracting.
@@ -169,7 +167,7 @@ Constraints differ by planning strategy:
 
 ### 📊 Level Plan:  
 
-#### Supply Planning with Excel & Solver
+#### 🧮 Supply Planning with Excel & Solver
 
 The supply planning problem for Level Plan is addressed using **Excel formulas** and **Solver optimization**.  
 The approach consists of the following steps:
@@ -184,8 +182,6 @@ The approach consists of the following steps:
 
 #### ⚙️ Step 2. Define Constraints  
 Constraints differ by planning strategy:  
-
-**Level Plan**
 - Allow carrying inventory from Jan–May
 - No stockout allowed.
 - No overtime and subcontracting.

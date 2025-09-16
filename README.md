@@ -17,7 +17,6 @@
 ## 1️⃣ Context
 
 📘 **Main Context**  
-# 📦 Aggregate Production Planning – Gardening Tools Manufacturer
 
 - The company is a **gardening tools manufacturer** with **peak demand** occurring in **spring**, creating strong **seasonality in sales**.
 - It operates in a **highly competitive market** where **efficient production and inventory management** are critical to sustain **customer satisfaction** and **cost efficiency**.

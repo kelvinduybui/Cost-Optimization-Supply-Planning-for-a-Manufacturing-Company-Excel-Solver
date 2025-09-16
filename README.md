@@ -96,7 +96,7 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 ---
 
 ## 3️⃣ Model Formulation
-### Why Excel Solver  
+### ❓ Why Excel Solver  
 - **Excel Solver** = optimization tool: It finds the **best outcome** (e.g., minimize cost, maximize profit) for a given problem in Excel.
 - **Concept**: Based on three elements – **objective function** (goal), **decision variables** (controllable inputs), and **constraints** (limitations). Solver adjusts the variables to optimize the goal.
 - **Meaning**: Enables **decision-making** in real-world scenarios (production planning, workforce allocation, inventory management) **without the need for coding**.

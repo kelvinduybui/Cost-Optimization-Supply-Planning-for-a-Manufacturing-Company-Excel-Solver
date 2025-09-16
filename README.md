@@ -17,11 +17,18 @@
 ## 1️⃣ Context
 
 📘 **Main Context**  
-- A **manufacturing company** operates in a **highly competitive market** where **efficient production** and **inventory management** are critical to **meeting customer demand** while **minimizing costs**  
-- The company faces increasing pressure to **balance demand fluctuations** with **limited production capacity**, **strict cost controls**, and **service level requirements**  
-- The **Supply Planning team** is tasked with building a **6-month production plan (Jan–Jun)** using **Excel**:  
-  - Ensure **demand fulfillment** while adhering to operational constraints such as **inventory policies**, **workforce capacity**, and **subcontracting restrictions**  
-  - Compare alternative strategies (e.g., **Chase vs. Level**) to support **cost-effective decision-making**  
+# 📦 Aggregate Production Planning – Gardening Tools Manufacturer
+
+- The company is a **gardening tools manufacturer** with **peak demand** occurring in **spring**, creating strong **seasonality in sales**.
+- It operates in a **highly competitive market** where **efficient production and inventory management** are critical to sustain **customer satisfaction** and **cost efficiency**.
+- At the start of the planning horizon (**January**), the company has **1,000 units of inventory** and **80 workers**.
+- To respond to demand fluctuations, management can consider multiple options: **hiring or laying off workers**, **allocating overtime**, **subcontracting**, **backordering** in peak periods, or **carrying inventory** in low-demand months.
+- No strict limits are imposed on **subcontracting, inventory, or backorders**, but all generate associated **costs** that must be accounted for.
+- The **Supply Planning team** is tasked with building a **6-month aggregate production plan (Jan–Jun)** using **Excel/Solver** that:
+  - Ensures **demand fulfillment** while complying with **operational constraints**.  
+  - Compares alternative **strategies** (e.g., **Chase** vs. **Level**) to evaluate **cost trade-offs**.  
+  - Reflects different **constraints/targets** depending on the chosen strategy (e.g., **ending inventory target** for **Chase**, **workforce stability** for **Level**).  
+- **Objective:** **Minimize total operating cost** while achieving **service level targets** and supporting **efficient resource utilization**.
 
 👥 **Target Audience**  
 - Supply Planning & Production Planning Teams  
@@ -108,13 +115,14 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 
 #### 🔹 Key Formulas
 
-| Description | Formula |
-|-------------|---------|
-| Net demand in period *i* | `Net Demand(i) = Gross Demand(i) – Inventory(i–1)` |
-| Production quantity in period *i* | `Production(i) = WorkersEmployed(i) × WorkingDay × WorkingHour ÷ NetProductionTime` |
-| Number of workers employed in period *i* | `WorkersEmployed(i) = Workers(i–1) + Hired(i) – LaidOff(i)` |
-| Inventory balance at end of period *i* | `On-hand Inventory(i) = Inventory(i–1) + Production(i) + Overtime(i) + Subcontract(i) + Stockout(i) – Stockout(i–1) – Gross Demand(i)` |
-| Total cost in period *i* | `Total Monthly Cost(i) = Production(i) × MaterialCost + WorkersEmployed(i) × RegularTimeSalary + Hired(i) × HiringCost + LaidOff(i) × LayoffCost + Inventory(i) × HoldingCost + Overtime(i) × OvertimeCost + Subcontract(i) × SubcontractCost + Stockout(i) × StockoutCost` |
+| **Description**                          | **Formula**                                                                                                                                                                                                                                                               | **Explanation**                                                                                                                                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Net demand in period *i***             | `Net Demand(i) = Gross Demand(i) – Inventory(i–1)`                                                                                                                                                                                                                        | The actual demand that must be met in period *i* after accounting for available inventory from the previous period.                                                                                      |
+| **Production quantity in period *i***    | `Production(i) = WorkersEmployed(i) × WorkingDay × WorkingHour ÷ NetProductionTime`                                                                                                                                                                                       | Calculates how many units can be produced in period *i* based on the number of workers, working days, hours per day, and standard production time per unit.                                              |
+| **Workers employed in period *i***       | `WorkersEmployed(i) = Workers(i–1) + Hired(i) – LaidOff(i)`                                                                                                                                                                                                               | Tracks the workforce level by updating last period’s workers with hires and layoffs in the current period.                                                                                               |
+| **Inventory balance at end of period *i*** | `On-hand Inventory(i) = Inventory(i–1) + Production(i) + Overtime(i) + Subcontract(i) + Stockout(i) – Stockout(i–1) – Gross Demand(i)`                                                                                                                                    | Determines how much inventory remains at the end of the period by adding supply sources (production, overtime, subcontract, backlog carried in) and subtracting demand plus any backlog carried forward. |
+| **Total cost in period *i***             | `Total Monthly Cost(i) = Production(i) × MaterialCost + WorkersEmployed(i) × RegularTimeSalary + Hired(i) × HiringCost + LaidOff(i) × LayoffCost + Inventory(i) × HoldingCost + Overtime(i) × OvertimeCost + Subcontract(i) × SubcontractCost + Stockout(i) × StockoutCost` | Computes the total operating cost by summing up material, labor, hiring, layoff, inventory, overtime, subcontracting, and stockout costs in the period.                                                  |
+
 
 #### 🔹 Solver Objective
 - **Minimize**: TotalCost = Cost(Jan) + Cost(Feb) + Cost(Mar) + Cost(Apr) + Cost(May) + Cost(Jun)
@@ -129,7 +137,7 @@ Go to **File > Options > Add-ins > Excel Add-ins > Go**, check **Solver Add-in**
 
 #### Supply Planning with Excel & Solver
 
-The supply planning problem for chase plan is addressed using **Excel formulas** and **Solver optimization**.  
+The supply planning problem for Chase Plan is addressed using **Excel formulas** and **Solver optimization**.  
 The approach consists of the following steps:
 
 #### 📝 Step 1. Model Setup in Excel

@@ -96,22 +96,27 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 
 ---
 
-## 3️⃣ Model Formulation  
+## 3️⃣ Model Formulation
+### Why Excel Solver  
+- **Excel Solver** = optimization tool: It finds the **best outcome** (e.g., minimize cost, maximize profit) for a given problem in Excel.
+- **Concept**: Based on three elements – **objective function** (goal), **decision variables** (controllable inputs), and **constraints** (limitations). Solver adjusts the variables to optimize the goal.
+- **Meaning**: Enables **decision-making** in real-world scenarios (production planning, workforce allocation, inventory management) **without the need for coding**.
+
 ### Planning Model  
 
 - Each **row** = 1 month (**Jan–Jun**)  
 - Each **column** = Demand, Workforce, Production, Inventory, Costs  
 
 #### 🔹 Inputs: 
-- Gross Demand   
+- Gross Demand (i): number of gross demand needed in period i.    
 - Parameters
 
 #### 🔹 Decision Variables
-- Production(i)  
-- Workers Employed(i)  
-- Workers Hired(i)  
-- Workers Laid off(i)  
-- On-hand Inventory(i)  
+- Workers Hired(i): number of workers hired in period i.  
+- Workers Laid off(i): number of workers laid off in period i.
+- Overtime(i): number of units produced through overtime in period i.
+- Subcontract(i): number of units subcontracted in period i.
+- Stockout(i): number of backlogged (unmet) demand units carried to next period from period i.
 
 #### 🔹 Key Formulas
 
@@ -129,10 +134,6 @@ To design a **supply planning model** that ensures **demand fulfillment, prevent
 - Ensure all constraints defined by the chosen plan are satisfied.  
 
 ## 4️⃣ Solution Approach  
-
-### Enable Excel Solver  
-Go to **File > Options > Add-ins > Excel Add-ins > Go**, check **Solver Add-in**, click **OK**, then find **Solver** under the **Data** tab.
-
 ### ⚡ Chase Plan  
 
 #### Supply Planning with Excel & Solver
